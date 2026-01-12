@@ -2,25 +2,5 @@
   "name": "neuro-metric",
   "version": "1.0.0",
   "description": "A global, avant-garde IQ testing platform powered by Gemini AI.",
-  "private": true,
-  "scripts": {
-    "build": "echo \"No build required for this static project.\""
-  },
-  "dependencies": {
-    "@angular/common": "^21.0.0",
-    "@angular/compiler": "^21.0.0",
-    "@angular/core": "^21.0.0",
-    "@angular/platform-browser": "^21.0.0",
-    "@google/genai": "^1.35.0",
-    "lucide-angular": "^0.562.0",
-    "rxjs": "^7.8.2",
-    "@angular/build": "^21.0.0",
-    "@angular/cli": "^21.0.0",
-    "@angular/compiler-cli": "^21.0.0",
-    "tailwindcss": "latest"
-  },
-  "devDependencies": {
-    "@angular/build": "^21.0.5",
-    "typescript": "^5.9.4"
-  }
+  "private": true
 }
