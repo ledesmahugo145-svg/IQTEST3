@@ -29,7 +29,10 @@ export class LanguageService {
         downloadPdf: 'Download Certified PDF',
         iqLabel: 'Estimated IQ',
         restart: 'Restart Assessment',
-        exit: 'Abort Test'
+        exit: 'Abort Test',
+        errorTitle: 'Configuration Error',
+        errorDesc: 'The AI model could not be initialized. Please ensure the API_KEY is correctly set in your deployment environment variables.',
+        errorAction: 'Review Netlify Docs'
       }
     },
     zh: {
@@ -52,7 +55,10 @@ export class LanguageService {
         downloadPdf: '下载认证报告',
         iqLabel: '预估智商',
         restart: '重新开始测试',
-        exit: '退出测试'
+        exit: '退出测试',
+        errorTitle: '配置错误',
+        errorDesc: 'AI模型无法初始化。请确保您已在部署环境变量中正确设置 API_KEY。',
+        errorAction: '参考Netlify文档'
       }
     },
     es: {
@@ -75,7 +81,10 @@ export class LanguageService {
         downloadPdf: 'Descargar PDF',
         iqLabel: 'CI Estimado',
         restart: 'Reiniciar Evaluación',
-        exit: 'Salir'
+        exit: 'Salir',
+        errorTitle: 'Error de Configuración',
+        errorDesc: 'El modelo de IA no pudo inicializarse. Asegúrese de que la API_KEY esté configurada correctamente en sus variables de entorno de implementación.',
+        errorAction: 'Ver Docs de Netlify'
       }
     },
     fr: {
@@ -98,7 +107,10 @@ export class LanguageService {
         downloadPdf: 'Télécharger le PDF',
         iqLabel: 'QI Estimé',
         restart: 'Recommencer le Test',
-        exit: 'Quitter'
+        exit: 'Quitter',
+        errorTitle: 'Erreur de Configuration',
+        errorDesc: 'Le modèle d\'IA n\'a pas pu être initialisé. Veuillez vous assurer que l\'API_KEY est correctement définie dans vos variables d\'environnement de déploiement.',
+        errorAction: 'Consulter la doc Netlify'
       }
     },
     de: {
@@ -121,7 +133,10 @@ export class LanguageService {
         downloadPdf: 'PDF Herunterladen',
         iqLabel: 'Geschätzter IQ',
         restart: 'Test Neustarten',
-        exit: 'Abbrechen'
+        exit: 'Abbrechen',
+        errorTitle: 'Konfigurationsfehler',
+        errorDesc: 'Das KI-Modell konnte nicht initialisiert werden. Bitte stellen Sie sicher, dass der API_KEY in Ihren Bereitstellungsumgebungsvariablen korrekt eingestellt ist.',
+        errorAction: 'Netlify-Doks ansehen'
       }
     },
     ja: {
@@ -144,7 +159,10 @@ export class LanguageService {
         downloadPdf: 'PDFをダウンロード',
         iqLabel: '推定IQ',
         restart: 'テストを再開',
-        exit: '終了'
+        exit: '終了',
+        errorTitle: '設定エラー',
+        errorDesc: 'AIモデルを初期化できませんでした。デプロイ環境変数でAPI_KEYが正しく設定されていることを確認してください。',
+        errorAction: 'Netlifyドキュメント'
       }
     },
     hi: {
@@ -167,7 +185,10 @@ export class LanguageService {
         downloadPdf: 'पीडीएफ डाउनलोड करें',
         iqLabel: 'अनुमानित आईक्यू',
         restart: 'पुनः आरंभ करें',
-        exit: 'बाहर जाएं'
+        exit: 'बाहर जाएं',
+        errorTitle: 'कॉन्फ़िगरेशन त्रुटि',
+        errorDesc: 'एआई मॉडल को प्रारंभ नहीं किया जा सका। कृपया सुनिश्चित करें कि आपके परिनियोजन परिवेश चर में API_KEY सही ढंग से सेट है।',
+        errorAction: 'नेटलिफाई दस्तावेज़ देखें'
       }
     },
     ar: {
@@ -190,7 +211,10 @@ export class LanguageService {
         downloadPdf: 'تحميل PDF',
         iqLabel: 'معدل الذكاء التقديري',
         restart: 'إعادة الاختبار',
-        exit: 'خروج'
+        exit: 'خروج',
+        errorTitle: 'خطأ في التكوين',
+        errorDesc: 'تعذر تهيئة نموذج الذكاء الاصطناعي. يرجى التأكد من تعيين API_KEY بشكل صحيح في متغيرات بيئة النشر الخاصة بك.',
+        errorAction: 'مراجعة مستندات Netlify'
       }
     },
     pt: {
@@ -213,7 +237,10 @@ export class LanguageService {
         downloadPdf: 'Baixar PDF',
         iqLabel: 'QI Estimado',
         restart: 'Reiniciar Teste',
-        exit: 'Sair'
+        exit: 'Sair',
+        errorTitle: 'Erro de Configuração',
+        errorDesc: 'O modelo de IA não pôde ser inicializado. Certifique-se de que a API_KEY está definida corretamente em suas variáveis de ambiente de implantação.',
+        errorAction: 'Ver Docs da Netlify'
       }
     },
     ru: {
@@ -236,7 +263,10 @@ export class LanguageService {
         downloadPdf: 'Скачать PDF',
         iqLabel: 'Оценка IQ',
         restart: 'Перезапустить',
-        exit: 'Выход'
+        exit: 'Выход',
+        errorTitle: 'Ошибка конфигурации',
+        errorDesc: 'Не удалось инициализировать модель ИИ. Убедитесь, что API_KEY правильно установлен в переменных окружения вашего развертывания.',
+        errorAction: 'См. документацию Netlify'
       }
     }
   };

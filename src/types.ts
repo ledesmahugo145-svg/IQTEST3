@@ -6,7 +6,7 @@ export interface Question {
   category: 'logic' | 'math' | 'spatial' | 'verbal';
 }
 
-export type AppState = 'intro' | 'generating' | 'test' | 'calculating' | 'paywall' | 'result';
+export type AppState = 'intro' | 'generating' | 'test' | 'calculating' | 'paywall' | 'result' | 'error';
 
 export interface UserResult {
   rawScore: number; // Correct answers count
@@ -42,5 +42,8 @@ export interface LanguageConfig {
     iqLabel: string;
     restart: string;
     exit: string;
+    errorTitle: string;
+    errorDesc: string;
+    errorAction: string;
   };
 }
