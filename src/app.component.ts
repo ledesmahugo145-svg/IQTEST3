@@ -7,7 +7,6 @@ import { ResultComponent } from './components/result.component';
 import { GeminiService } from './services/gemini.service';
 import { LanguageService } from './services/language.service';
 import { AppState, Question, UserResult } from './types';
-import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +16,7 @@ import { LucideAngularModule } from 'lucide-angular';
     IntroComponent, 
     QuizComponent, 
     PaywallComponent, 
-    ResultComponent,
-    LucideAngularModule
+    ResultComponent
   ],
   template: `
     <!-- MAIN CONTAINER: Locked 100vh, hidden overflow -->
@@ -101,20 +99,6 @@ import { LucideAngularModule } from 'lucide-angular';
               </div>
             }
           }
-
-          @case ('error') {
-            <div class="flex flex-col items-center justify-center h-full w-full p-6 text-center">
-              <div class="max-w-md p-8 bg-red-900/10 border border-red-500/20 rounded-lg backdrop-blur-sm">
-                <lucide-icon name="shield-alert" class="w-16 h-16 mx-auto text-red-400 mb-6"></lucide-icon>
-                <h2 class="text-2xl font-bold text-white mb-3">{{ uiConfig().errorTitle }}</h2>
-                <p class="text-red-200/80 mb-6 text-sm">{{ uiConfig().errorDesc }}</p>
-                <a href="https://docs.netlify.com/environment-variables/get-started/" target="_blank" rel="noopener noreferrer" 
-                   class="inline-block bg-gray-200 text-black px-6 py-3 font-bold font-mono text-sm uppercase tracking-wider rounded-sm hover:bg-white transition-all">
-                  {{ uiConfig().errorAction }}
-                </a>
-              </div>
-            </div>
-          }
         }
       </main>
 
@@ -188,11 +172,6 @@ export class AppComponent {
 
   constructor() {
     this.langService.initialize();
-    // Check for API key after services are injected.
-    // If it's not configured, immediately switch to an error state.
-    if (!this.geminiService.isConfigured()) {
-      this.state.set('error');
-    }
   }
 
   async startGeneration() {
@@ -276,9 +255,6 @@ export class AppComponent {
   }
 
   resetApp() {
-    // Cannot reset if in error state, must be re-deployed
-    if(this.state() === 'error') return;
-
     this.questions.set([]);
     this.result.set(null);
     this.state.set('intro');

@@ -6,9 +6,8 @@ import { Question, LanguageCode } from '../types';
   providedIn: 'root'
 })
 export class GeminiService {
-  private ai: GoogleGenAI | null = null;
-  private apiKey: string;
-
+  private ai: GoogleGenAI;
+  
   // Local Database of "Hard" questions (Validated for Difficulty) - ENGLISH ONLY
   private localBank: Question[] = [
     { id: 101, category: 'logic', correctIndex: 1, text: "If 'AZ' = 126, 'BY' = 225, what is 'CX'?", options: ["324", "323", "420", "330"] },
@@ -29,28 +28,10 @@ export class GeminiService {
   ];
 
   constructor() {
-    // Safely access the API key to prevent 'process is not defined' crash in browsers.
-    // This code is designed to work in environments where 'process' might not exist.
-    this.apiKey = (typeof process !== 'undefined' && process.env && process.env.API_KEY) 
-      ? process.env.API_KEY 
-      : '';
-    
-    if (this.apiKey) {
-        this.ai = new GoogleGenAI({ apiKey: this.apiKey });
-    } else {
-        console.warn('NeuroMetric AI Core: API_KEY not found. AI features will be disabled.');
-    }
-  }
-
-  isConfigured(): boolean {
-    return !!this.apiKey && !!this.ai;
+    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   }
 
   async generateTest(language: LanguageCode): Promise<Question[]> {
-    if (!this.isConfigured()) {
-      throw new Error('Gemini API key not configured.');
-    }
-    
     let questions: Question[];
 
     if (language === 'en') {
@@ -75,9 +56,6 @@ export class GeminiService {
   }
 
   private async fetchAIQuestions(language: LanguageCode, count: number): Promise<Question[]> {
-    if (!this.ai) {
-      throw new Error('AI client not initialized.');
-    }
     const prompt = `Generate ${count} UNIQUE, HIGH LEVEL IQ questions in language '${language}'.
     Must be challenging for adults.
     Focus: Abstract Logic, Advanced Pattern Recognition.
@@ -133,9 +111,6 @@ export class GeminiService {
   }
 
   async generateAnalysis(iq: number, language: LanguageCode, validity: string): Promise<string> {
-    if (!this.isConfigured()) {
-        return 'Processing complete. Cognitive metrics derived from standardized performance algorithms.';
-    }
     try {
       // Prompt engineered for clinical/academic tone
       let context = '';
@@ -152,7 +127,7 @@ export class GeminiService {
       Context: ${context}. 
       Tone: Academic, Formal, Objective.`;
 
-      const response = await this.ai!.models.generateContent({
+      const response = await this.ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: prompt,
         config: { thinkingConfig: { thinkingBudget: 0 } }
