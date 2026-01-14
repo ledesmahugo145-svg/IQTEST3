@@ -2,12 +2,12 @@ import { Component, inject, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../services/language.service';
 import { LanguageCode } from '../types';
-import { LucideAngularModule } from 'lucide-angular';
+import { IconComponent } from './ui/icon.component';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, IconComponent],
   template: `
     <!-- Top Right Language Selector -->
     <div class="absolute top-6 right-6 z-[100]">
@@ -17,7 +17,7 @@ import { LucideAngularModule } from 'lucide-angular';
           [attr.aria-haspopup]="true"
           [attr.aria-expanded]="isLangMenuOpen()"
           class="flex items-center gap-2 px-4 py-2 bg-gray-900/90 backdrop-blur-md border border-gray-700 rounded-full text-xs font-mono text-white hover:border-blue-500 transition-all shadow-lg min-w-[120px] justify-center">
-          <lucide-icon name="globe" [size]="14"></lucide-icon>
+          <app-icon name="globe" size="14"></app-icon>
           <span class="uppercase font-bold tracking-wide">
             @if (langService.detectionStatus() === 'detecting') {
               <span class="animate-pulse">DETECTING...</span>
@@ -25,7 +25,7 @@ import { LucideAngularModule } from 'lucide-angular';
               {{ langService.config().name }}
             }
           </span>
-          <lucide-icon name="chevron-down" [size]="12" [class.rotate-180]="isLangMenuOpen()" class="transition-transform duration-200"></lucide-icon>
+          <app-icon name="chevron-down" size="12" [class.rotate-180]="isLangMenuOpen()" class="transition-transform duration-200"></app-icon>
         </button>
         
         <!-- Dropdown Menu -->

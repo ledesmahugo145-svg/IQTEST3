@@ -1,47 +1,15 @@
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './src/app.component';
-import { provideExperimentalZonelessChangeDetection, importProvidersFrom } from '@angular/core';
-import { 
-  LucideAngularModule,
-  Globe, 
-  ChevronDown,
-  X,
-  ArrowRight,
-  CreditCard,
-  Bitcoin,
-  ShieldCheck,
-  Lock,
-  Download,
-  Share2,
-  BrainCircuit,
-  RotateCcw,
-  Clock,
-  ShieldAlert,
-  CheckCircle
-} from 'lucide-angular';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
-    importProvidersFrom(LucideAngularModule.pick({
-      Globe, 
-      ChevronDown,
-      X,
-      ArrowRight,
-      CreditCard,
-      Bitcoin,
-      ShieldCheck,
-      Lock,
-      Download,
-      Share2,
-      BrainCircuit,
-      RotateCcw,
-      Clock,
-      ShieldAlert,
-      CheckCircle
-    }))
+    provideExperimentalZonelessChangeDetection()
   ]
-}).catch((err) => console.error(err));
+}).catch((err) => {
+  console.error('Bootstrap Error:', err);
+  throw err;
+});
 
 // AI Studio always uses an `index.tsx` file for all project types.

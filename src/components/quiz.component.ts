@@ -1,12 +1,12 @@
 import { Component, computed, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Question, LanguageConfig } from '../types';
-import { LucideAngularModule } from 'lucide-angular';
+import { IconComponent } from './ui/icon.component';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, IconComponent],
   template: `
     <div class="w-full max-w-3xl mx-auto px-6 py-8 relative">
       <!-- Decorative Borders -->
@@ -18,11 +18,11 @@ import { LucideAngularModule } from 'lucide-angular';
       <!-- Header with Exit Button -->
       <div class="flex justify-between items-start mb-12 border-b border-gray-800 pb-6">
         
-        <!-- EXIT BUTTON (New Feature) -->
+        <!-- EXIT BUTTON -->
         <button 
           (click)="exit.emit()"
           class="group flex items-center gap-2 px-3 py-1.5 bg-red-900/10 border border-red-900/30 rounded text-xs font-mono text-red-400 hover:bg-red-900/30 hover:border-red-500 transition-all">
-          <lucide-icon name="x" [size]="14"></lucide-icon>
+          <app-icon name="x" size="14"></app-icon>
           <span class="uppercase tracking-wider group-hover:text-red-300">
              {{ uiConfig().exit }}
           </span>
@@ -92,7 +92,7 @@ import { LucideAngularModule } from 'lucide-angular';
               {{ uiConfig().next }}
             }
           </span>
-          <lucide-icon name="arrow-right" [size]="16" class="relative z-10"></lucide-icon>
+          <app-icon name="arrow-right" size="16" class="relative z-10"></app-icon>
           <div class="absolute inset-0 bg-blue-400 transform translate-y-full transition-transform group-hover:translate-y-0 opacity-10"></div>
         </button>
       </div>
@@ -117,8 +117,8 @@ import { LucideAngularModule } from 'lucide-angular';
 export class QuizComponent {
   questions = input.required<Question[]>();
   uiConfig = input.required<LanguageConfig['ui']>();
-  complete = output<number>(); // Emits score
-  exit = output<void>(); // Emits exit event
+  complete = output<number>(); 
+  exit = output<void>();
 
   currentIndex = signal(0);
   selectedOption = signal<number | null>(null);
@@ -130,8 +130,7 @@ export class QuizComponent {
     if (questions.length > index) {
       return questions[index];
     }
-    // Return a placeholder to prevent errors before data arrives
-    return { id: 0, text: '...', options: [], correctIndex: 0, category: 'logic' };
+    return { id: 0, text: '...', options: [], correctIndex: 0, category: 'logic' } as Question;
   });
 
   isLast = computed(() => this.currentIndex() === this.questions().length - 1);

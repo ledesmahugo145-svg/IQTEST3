@@ -7,7 +7,7 @@ import { ResultComponent } from './components/result.component';
 import { GeminiService } from './services/gemini.service';
 import { LanguageService } from './services/language.service';
 import { AppState, Question, UserResult } from './types';
-import { LucideAngularModule } from 'lucide-angular';
+import { IconComponent } from './components/ui/icon.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ import { LucideAngularModule } from 'lucide-angular';
     QuizComponent, 
     PaywallComponent, 
     ResultComponent,
-    LucideAngularModule
+    IconComponent
   ],
   template: `
     <!-- MAIN CONTAINER: Locked 100vh, hidden overflow -->
@@ -105,7 +105,7 @@ import { LucideAngularModule } from 'lucide-angular';
           @case ('error') {
             <div class="flex flex-col items-center justify-center h-full w-full p-6 text-center">
               <div class="max-w-md p-8 bg-red-900/10 border border-red-500/20 rounded-lg backdrop-blur-sm">
-                <lucide-icon name="shield-alert" class="w-16 h-16 mx-auto text-red-400 mb-6"></lucide-icon>
+                <app-icon name="shield-alert" class="w-16 h-16 mx-auto text-red-400 mb-6"></app-icon>
                 <h2 class="text-2xl font-bold text-white mb-3">{{ uiConfig().errorTitle }}</h2>
                 <p class="text-red-200/80 mb-6 text-sm">{{ uiConfig().errorDesc }}</p>
                 <a href="https://docs.netlify.com/environment-variables/get-started/" target="_blank" rel="noopener noreferrer" 
@@ -188,9 +188,6 @@ export class AppComponent {
 
   constructor() {
     this.langService.initialize();
-    // OFFLINE MODE UPDATE:
-    // We no longer check for API Key configuration here.
-    // The app will always assume it is ready to go.
   }
 
   async startGeneration() {
@@ -198,15 +195,12 @@ export class AppComponent {
     try {
       const q = await this.geminiService.generateTest(this.langService.currentLang());
       this.startTime = Date.now();
-      
-      // Set questions data BEFORE switching state. This declarative approach
-      // with the @if block in the template is the robust solution.
       this.questions.set(q);
       this.state.set('test');
 
     } catch (e) {
       console.error('Generation failed', e);
-      this.resetApp(); // Go back to intro on failure
+      this.resetApp(); 
     }
   }
 
@@ -230,7 +224,6 @@ export class AppComponent {
       estimatedIQ = 65 + Math.floor(Math.random() * 15); 
     } else {
       // Standard IQ Calculation Logic based on score out of 10
-      // This is a rough estimation curve
       switch (rawScore) {
         case 0: estimatedIQ = 68; break; 
         case 1: estimatedIQ = 74; break; 
@@ -245,14 +238,10 @@ export class AppComponent {
         case 10: estimatedIQ = 145; break; 
         default: estimatedIQ = 100;
       }
-      // Add slight randomness to make it feel organic (+/- 2 points)
       estimatedIQ += Math.floor(Math.random() * 5) - 2;
     }
 
-    // Clamp score
     estimatedIQ = Math.max(60, Math.min(160, estimatedIQ));
-    
-    // Calculate percentile
     const percentile = Math.min(99.9, Math.max(0.1, Math.round((estimatedIQ - 100) / 15 * 34 + 50)));
 
     const summary = await this.geminiService.generateAnalysis(
@@ -283,7 +272,6 @@ export class AppComponent {
 
   resetApp() {
     if(this.state() === 'error') return;
-
     this.questions.set([]);
     this.result.set(null);
     this.state.set('intro');

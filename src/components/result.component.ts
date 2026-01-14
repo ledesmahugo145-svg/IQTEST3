@@ -2,12 +2,12 @@ import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserResult, LanguageConfig } from '../types';
 import { PdfService } from '../services/pdf.service';
-import { LucideAngularModule } from 'lucide-angular';
+import { IconComponent } from './ui/icon.component';
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, IconComponent],
   template: `
     <div class="max-w-4xl mx-auto px-6 py-12 text-center relative">
       <!-- Background Glow -->
@@ -38,7 +38,7 @@ import { LucideAngularModule } from 'lucide-angular';
         <!-- Rigor Metrics -->
         <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-10">
            <div class="bg-gray-900/40 border border-gray-800 p-3 rounded flex items-center justify-center gap-3">
-              <lucide-icon name="clock" [size]="16" class="text-blue-400"></lucide-icon>
+              <app-icon name="clock" size="16" class="text-blue-400"></app-icon>
               <div class="text-left">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider">Duration</div>
                 <div class="text-sm font-mono text-white">{{ formatTime(result().durationSeconds) }}</div>
@@ -46,9 +46,9 @@ import { LucideAngularModule } from 'lucide-angular';
            </div>
            <div class="bg-gray-900/40 border border-gray-800 p-3 rounded flex items-center justify-center gap-3">
               @if (result().validity.includes('Low')) {
-                 <lucide-icon name="shield-alert" [size]="16" class="text-red-400"></lucide-icon>
+                 <app-icon name="shield-alert" size="16" class="text-red-400"></app-icon>
               } @else {
-                 <lucide-icon name="check-circle" [size]="16" class="text-green-400"></lucide-icon>
+                 <app-icon name="check-circle" size="16" class="text-green-400"></app-icon>
               }
               <div class="text-left">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider">Validity</div>
@@ -66,7 +66,7 @@ import { LucideAngularModule } from 'lucide-angular';
           <div class="p-8 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-sm relative overflow-hidden group">
              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-transparent opacity-50"></div>
              <div class="flex items-center gap-3 mb-6 text-blue-400">
-               <lucide-icon name="brain-circuit" [size]="20"></lucide-icon>
+               <app-icon name="brain-circuit" size="20"></app-icon>
                <h3 class="font-bold font-mono text-sm uppercase tracking-wider">Clinical Assessment</h3>
              </div>
              <p class="text-gray-300 text-sm leading-7 font-light">
@@ -120,14 +120,14 @@ import { LucideAngularModule } from 'lucide-angular';
           <button 
             (click)="download()"
             class="w-full md:w-auto bg-white hover:bg-gray-200 text-black px-8 py-4 rounded-sm font-bold font-mono text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all min-w-[200px] shadow-lg shadow-white/10">
-            <lucide-icon name="download" [size]="18"></lucide-icon>
+            <app-icon name="download" size="18"></app-icon>
             <span class="text-black font-bold">{{ uiConfig().downloadPdf }}</span>
           </button>
           
           <button 
             (click)="restart.emit()"
             class="w-full md:w-auto bg-gray-900 border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white px-8 py-4 rounded-sm font-bold font-mono text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all min-w-[200px]">
-            <lucide-icon name="rotate-ccw" [size]="18"></lucide-icon>
+            <app-icon name="rotate-ccw" size="18"></app-icon>
             <span class="text-gray-300 group-hover:text-white">{{ uiConfig().restart }}</span>
           </button>
         </div>
