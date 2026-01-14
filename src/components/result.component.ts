@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserResult, LanguageConfig } from '../types';
 import { PdfService } from '../services/pdf.service';
@@ -7,6 +7,7 @@ import { IconComponent } from './ui/icon.component';
 @Component({
   selector: 'app-result',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, IconComponent],
   template: `
     <div class="max-w-4xl mx-auto px-6 py-12 text-center relative">

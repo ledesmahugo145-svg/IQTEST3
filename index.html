@@ -7,20 +7,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
-  <!-- Global Error Handler to debug "Stuck Loading" issues -->
+  <!-- Global Error Handler -->
   <script>
     window.onerror = function(msg, url, line, col, error) {
       const loader = document.querySelector('.app-loading');
       if (loader) loader.style.display = 'none';
       
       const div = document.createElement('div');
-      div.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#030712;color:#ef4444;padding:40px;z-index:10000;font-family:monospace;overflow:auto;';
-      div.innerHTML = '<h3 style="font-size:24px;margin-bottom:20px;">System Startup Error</h3>' +
-                      '<div style="background:#1f2937;padding:20px;border-radius:8px;border:1px solid #374151;">' +
-                      '<p style="margin-bottom:10px;"><strong>Message:</strong> ' + msg + '</p>' +
-                      '<p style="color:#9ca3af;"><strong>Location:</strong> ' + url + ':' + line + ':' + col + '</p>' +
-                      '<pre style="margin-top:20px;white-space:pre-wrap;color:#d1d5db;">' + (error ? error.stack : 'No stack trace available') + '</pre>' +
-                      '</div>';
+      div.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#030712;color:#ef4444;padding:20px;z-index:10000;font-family:monospace;overflow:auto;font-size:12px;';
+      div.innerHTML = '<h3>System Startup Error</h3><p>' + msg + '</p>';
       document.body.appendChild(div);
       return false;
     };
@@ -31,32 +26,21 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #030712; /* gray-950 */
-      color: #f9fafb; /* gray-50 */
+      background-color: #030712;
+      color: #f9fafb;
       margin: 0;
-      overflow: hidden; /* Prevent scroll bars during load */
+      overflow: hidden;
     }
     
-    .font-mono {
-      font-family: 'Space Mono', monospace;
-    }
+    .font-mono { font-family: 'Space Mono', monospace; }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #111827; 
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #374151; 
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #4b5563; 
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #111827; }
+    ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
-    /* Initial Loader Styles */
+    /* Initial Loader */
     .app-loading {
       position: fixed;
       top: 0;
@@ -69,6 +53,7 @@
       justify-content: center;
       background-color: #030712;
       z-index: 9999;
+      transition: opacity 0.5s ease-out;
     }
     .spinner {
       width: 40px;
@@ -87,30 +72,18 @@
       text-transform: uppercase;
       animation: pulse 2s infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
   </style>
 <script type="importmap">
 {
   "imports": {
     "rxjs": "https://esm.sh/rxjs@7.8.1",
     "rxjs/operators": "https://esm.sh/rxjs@7.8.1/operators",
-    "rxjs/ajax": "https://esm.sh/rxjs@7.8.1/ajax",
-    "rxjs/webSocket": "https://esm.sh/rxjs@7.8.1/webSocket",
-    "rxjs/testing": "https://esm.sh/rxjs@7.8.1/testing",
-    "rxjs/fetch": "https://esm.sh/rxjs@7.8.1/fetch",
     "@angular/compiler": "https://esm.sh/@angular/compiler@18.2.0",
     "@angular/platform-browser": "https://esm.sh/@angular/platform-browser@18.2.0",
     "@angular/core": "https://esm.sh/@angular/core@18.2.0",
-    "@angular/common": "https://esm.sh/@angular/common@18.2.0",
-    "lucide-angular": "https://esm.sh/lucide-angular@0.408.0",
-    "tslib": "https://esm.sh/tslib@2.6.3",
-    "@google/genai": "https://esm.sh/@google/genai@^1.35.0?external=rxjs"
+    "@angular/common": "https://esm.sh/@angular/common@18.2.0"
   }
 }
 </script>

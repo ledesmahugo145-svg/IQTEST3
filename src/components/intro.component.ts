@@ -1,4 +1,4 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { Component, inject, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../services/language.service';
 import { LanguageCode } from '../types';
@@ -7,6 +7,7 @@ import { IconComponent } from './ui/icon.component';
 @Component({
   selector: 'app-intro',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, IconComponent],
   template: `
     <!-- Top Right Language Selector -->

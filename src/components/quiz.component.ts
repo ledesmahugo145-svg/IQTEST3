@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Question, LanguageConfig } from '../types';
 import { IconComponent } from './ui/icon.component';
@@ -6,6 +6,7 @@ import { IconComponent } from './ui/icon.component';
 @Component({
   selector: 'app-quiz',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, IconComponent],
   template: `
     <div class="w-full max-w-3xl mx-auto px-6 py-8 relative">

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IntroComponent } from './components/intro.component';
 import { QuizComponent } from './components/quiz.component';
@@ -12,6 +12,7 @@ import { IconComponent } from './components/ui/icon.component';
 @Component({
   selector: 'app-root',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule, 
     IntroComponent, 

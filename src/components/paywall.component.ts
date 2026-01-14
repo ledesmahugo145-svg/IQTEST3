@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageConfig } from '../types';
 import { IconComponent } from './ui/icon.component';
@@ -6,6 +6,7 @@ import { IconComponent } from './ui/icon.component';
 @Component({
   selector: 'app-paywall',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, IconComponent],
   template: `
     <div class="max-w-md mx-auto p-6 bg-gray-900 border border-gray-800 rounded-lg shadow-2xl mt-12 relative z-50">
