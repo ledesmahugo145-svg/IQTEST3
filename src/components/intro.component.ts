@@ -14,6 +14,8 @@ import { LucideAngularModule } from 'lucide-angular';
       <div class="relative">
         <button 
           (click)="toggleLangMenu()"
+          [attr.aria-haspopup]="true"
+          [attr.aria-expanded]="isLangMenuOpen()"
           class="flex items-center gap-2 px-4 py-2 bg-gray-900/90 backdrop-blur-md border border-gray-700 rounded-full text-xs font-mono text-white hover:border-blue-500 transition-all shadow-lg min-w-[120px] justify-center">
           <lucide-icon name="globe" [size]="14"></lucide-icon>
           <span class="uppercase font-bold tracking-wide">

@@ -1,7 +1,7 @@
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './src/app.component';
-import { provideZonelessChangeDetection, importProvidersFrom } from '@angular/core';
+import { provideExperimentalZonelessChangeDetection, importProvidersFrom } from '@angular/core';
 import { 
   LucideAngularModule,
   Globe, 
@@ -23,7 +23,7 @@ import {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideZonelessChangeDetection(),
+    provideExperimentalZonelessChangeDetection(),
     importProvidersFrom(LucideAngularModule.pick({
       Globe, 
       ChevronDown,

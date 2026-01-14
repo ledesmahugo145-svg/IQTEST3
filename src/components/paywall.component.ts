@@ -9,7 +9,7 @@ import { LucideAngularModule } from 'lucide-angular';
   imports: [CommonModule, LucideAngularModule],
   template: `
     <div class="max-w-md mx-auto p-6 bg-gray-900 border border-gray-800 rounded-lg shadow-2xl mt-12 relative z-50">
-      <div class="text-center mb-8">
+      <div class="text-center mb-6">
         <div class="mx-auto w-16 h-16 bg-blue-900/20 text-blue-400 rounded-full flex items-center justify-center mb-4">
           <lucide-icon name="lock" [size]="32"></lucide-icon>
         </div>
@@ -21,9 +21,21 @@ import { LucideAngularModule } from 'lucide-angular';
         </p>
       </div>
 
+      <div class="my-6 text-left text-sm text-gray-300 bg-gray-800/30 p-4 rounded-md border border-gray-700/50">
+        <h4 class="font-bold text-white mb-3">{{ uiConfig().paywallFeaturesTitle }}</h4>
+        <ul class="space-y-2">
+          @for(feature of uiConfig().paywallFeatures; track feature) {
+            <li class="flex items-start gap-2">
+              <lucide-icon name="check-circle" [size]="16" class="text-green-500 mt-0.5 shrink-0"></lucide-icon>
+              <span>{{ feature }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
       <div class="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
         <p class="text-center text-gray-400 text-xs mb-6">
-          You will be redirected to our secure payment partner to complete your purchase.
+          {{ uiConfig().paywallNote }}
         </p>
         
         <!-- 
